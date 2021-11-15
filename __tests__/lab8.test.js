@@ -1,7 +1,7 @@
 describe('Basic user flow for Website', () => {
   // First, visit the lab 8 website
   beforeAll(async () => {
-    await page.goto('https://www.youtube.com/watch?v=IK3n7kT77HY&t=163s&ab_channel=knerp');
+    await page.goto('http://127.0.0.1:5500/');
   });
 
   // Next, check to make sure that all 20 <product-item> elements have loaded
@@ -41,7 +41,7 @@ describe('Basic user flow for Website', () => {
     for(var i = 1; i < prodItems.length; i++)
     {
       data = await prodItems[i].getProperty('data');
-      plainValue == await data.jsonValue();
+      plainValue = await data.jsonValue();
       if (plainValue.title.length == 0) { allArePopulated = false; }
       if (plainValue.price.length == 0) { allArePopulated = false; }
       if (plainValue.image.length == 0) { allArePopulated = false; }
@@ -58,7 +58,8 @@ describe('Basic user flow for Website', () => {
     // Grab the shadowRoot of that element (it's a property), then query a button from that shadowRoot.
     // Once you have the button, you can click it and check the innerText property of the button.
     // Once you have the innerText property, use innerText['_remoteObject'].value to get the text value of it
-    
+    //const prod = await page.$('product-item');
+    //prod.getProperty('button');
   }, 2500);
 
   // Check to make sure that after clicking "Add to Cart" on every <product-item> that the Cart
